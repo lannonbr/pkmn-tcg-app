@@ -1,0 +1,15 @@
+<include src="layouts/main">
+  <arg pageContent>
+    <article id="homepage">
+      <a href="/new">Back to Set Listing</a>
+      <ul class="setList">
+        <loop through="setList" val="card">
+          <li>
+            <span>{card.name} -</span>
+            <a href="/card/{card.value}">{card.value}</a>
+          </li>
+        </loop>
+      </ul>
+    </article>
+  </arg>
+</include>

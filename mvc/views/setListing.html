@@ -1,0 +1,28 @@
+<include src="layouts/main">
+  <arg pageContent>
+    <article id="homepage">
+      <h2>Newest Sets</h2>
+
+      <ul class="setListingList newSets">
+        <loop through="newSets" val="set">
+          <li>
+            <img src="{set.img}" alt="Logo for {set.name}" />
+            <p>
+              <span>{set.name} -</span>
+              <a href="/new/{set.value}">{set.value}</a>
+            </p>
+          </li>
+        </loop>
+      </ul>
+      <h2>All Pokemon Sets</h2>
+      <ul class="setListingList">
+        <loop through="sets" val="set">
+          <li>
+            {set.name} - {set.description} -
+            <a href="/new/{set.value}">{set.value}</a>
+          </li>
+        </loop>
+      </ul>
+    </article>
+  </arg>
+</include>

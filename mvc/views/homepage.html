@@ -1,0 +1,33 @@
+<include src="layouts/main">
+  <arg pageContent>
+    <article id="homepage">
+      <a href="/new">Create new Entry</a>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Identifier</th>
+            <th>Rarity</th>
+            <th>Current Market Price</th>
+            <th>Requested Price</th>
+            <th>TCGPlayer Link</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <loop through="posts" val="post">
+            <tr>
+              <td>{post.name}</td>
+              <td>{post.identifier}</td>
+              <td>{post.rarity}</td>
+              <td>{post.currentMarketPrice}</td>
+              <td>{post.requestedPrice}</td>
+              <td><a href="{post.tcgLink}">TCGPlayer</a></td>
+              <td><button>...</button></td>
+            </tr>
+          </loop>
+        </tbody>
+      </table>
+    </article>
+  </arg>
+</include>

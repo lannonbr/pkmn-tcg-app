@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>{content.titleTag}</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/js/main.js" defer></script>
+  </head>
+  <body class="no-js">
+    <main>
+      <header>
+        <h1>{content.appTitle} - {content.pageTitle}</h1>
+        <a href="/">Home</a>
+      </header>
+      {pageContent|s}
+    </main>
+    <footer>
+      <p>&copy; Copyright <a href="https://lannonbr.com">Benjamin Lannon</a></p>
+      <p>
+        All data is obtaianed via the
+        <a href="https://pokemontcg.io/">Pokemon TCG API</a> by
+        <a href="https://andrewbackes.com/">Andrew Backes</a>
+      </p>
+      <p>
+        This website is not produced, endorsed, supported, or affiliated with
+        Nintendo or The Pokémon Company.
+      </p>
+    </footer>
+  </body>
+</html>

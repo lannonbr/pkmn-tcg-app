@@ -1,0 +1,18 @@
+<include src="layouts/main">
+  <arg pageContent>
+    <article id="homepage">
+      <a href="/new/{set}">Back to set</a>
+      <br />
+      <br />
+      <img src="{cardPic}" alt="Card preview for {cardName}" />
+      <loop through="priceList" val="priceItem">
+        <p>{priceItem.type} - {priceItem.marketPrice}</p>
+      </loop>
+      <!-- <pre>{cardDetails}</pre> -->
+      <!-- <pre>{cardPrices}</pre> -->
+      <p>TCGPlayer Link: <a href="{tcgPlayerUrl}">{tcgPlayerUrl}</a></p>
+
+      <button>Add to watch list</button>
+    </article>
+  </arg>
+</include>
