@@ -1,6 +1,7 @@
 const fs = require("fs");
 const pokemon = require("pokemontcgsdk");
 const { saveCard, removeCard } = require("../models/cards");
+const path = require("path");
 pokemon.configure({ apiKey: process.env["POKEMON_TCG_API_TOKEN"] });
 require("dotenv").config();
 
@@ -14,9 +15,7 @@ module.exports = (router, app) => {
     let model = require("../models/global")(req, res);
 
     model.sets = JSON.parse(
-      fs.readFileSync(
-        "/Users/lannonbr/Projects/other/pokemon-tcg-data/shrink/sets.json"
-      )
+      fs.readFileSync(path.join(__dirname, "..", "..", "data", "sets.json"))
     );
 
     model.sets = model.sets.reverse();
@@ -40,7 +39,7 @@ module.exports = (router, app) => {
 
     model.setList = JSON.parse(
       fs.readFileSync(
-        `/Users/lannonbr/Projects/other/pokemon-tcg-data/shrink/sets/${setId}.json`
+        path.join(__dirname, "..", "..", "data", "sets", `${setId}.json`)
       )
     );
 
