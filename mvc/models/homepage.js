@@ -19,19 +19,11 @@ module.exports = (model) => {
 
   model.cards = getCards();
 
-  // model.posts = [
-  //   {
-  //     uuid: "8b4b0e5b-9189-4fa1-9ac0-7beff8ae7864",
-  //     identifier: "sv4-205",
-  //     cardName: "Yveltal",
-  //     rarity: "Illustration Rare",
-  //     marketPrice: dollarFormatter.format(17.21),
-  //     requestedPrice: dollarFormatter.format(15),
-  //     tcgLink:
-  //       "https://www.tcgplayer.com/product/523886/pokemon-sv04-paradox-rift-yveltal-205-182?Language=English",
-  //     refreshCron: "0 0 * * *",
-  //   },
-  // ];
+  // Format prices to dollar amounts
+  model.cards.forEach((card) => {
+    card.marketPrice = dollarFormatter.format(card.marketPrice);
+    card.requestedPrice = dollarFormatter.format(card.requestedPrice);
+  });
 
   return model;
 };
