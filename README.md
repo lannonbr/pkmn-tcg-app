@@ -1,25 +1,24 @@
 # pkmn-tcg-app
 
+A node app to track prices for Pokemon TCG cards based on prices from TCGPlayer. The main functionality will be sending Discord alerts when a card's market price drops
+below a price I would be comfortable buying it at.
+
 ## Setup
 
-- Clone this repo.
+Local dev:
 
-- Install dependencies:
-  - Use `npm ci` if you're not altering the dependency list or changing the versions of your dependencies.
-  - Alternatively, use `npm install` if you've altered the dependency list or changed the version of one of your dependencies. This is also necessary if you change the app's version number.
+- git clone
+- `npm install`
+- `node scripts/cacheSets.js` to grab set lists from https://github.com/PokemonTCG/pokemon-tcg-data/
+- `npm run dev`
 
-- Run the app:
-  - Use `npm run production` to run in production mode.
-    - Available shorthands:
-      - `npm run prod`
-      - `npm run p`
-      - `npm start`
-  - Use `npm run development` to run in development mode.
-    - Available shorthands:
-      - `npm run dev`
-      - `npm run d`
-  - Use `npm run production-proxy` to run the app in production mode, but with `localhostOnly` set to true and `hostPublic` set to false. This mode will make it so your app only listens to requests coming from localhost and does not serve anything in the public folder. This mode is useful when you want to host your app behind a reverse proxy from a web server like Apache or nginx and [is considered a best practice for Node.js deployments](https://expressjs.com/en/advanced/best-practice-performance.html#use-a-reverse-proxy).
-    - Available shorthands:
-      - `npm run prodproxy`
-      - `npm run x`
-  - See [docs](https://github.com/rooseveltframework/roosevelt#available-npm-scripts) for more information about configuring and running the app.
+Docker compose:
+
+- git clone
+- `node scripts/cacheSets.js`
+- `docker compose up -d`
+
+## Env Variables
+
+- POKEMON_TCG_API_TOKEN: API token from https://pokemontcg.io/ to get card & pricing data.
+- DISCORD_WEBHOOK_URL: URL for discord alerts. Ref: https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
