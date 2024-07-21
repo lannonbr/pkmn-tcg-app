@@ -1,4 +1,5 @@
-const { CronJob } = require("cron");
+const { CronJob, sendAt } = require("cron");
+const { DateTime } = require("luxon");
 const { getCards } = require("./cards");
 
 // const job = new CronJob(
@@ -23,6 +24,9 @@ module.exports = (model) => {
   model.cards.forEach((card) => {
     card.marketPrice = dollarFormatter.format(card.marketPrice);
     card.requestedPrice = dollarFormatter.format(card.requestedPrice);
+    card.nextRun = sendAt(card.refreshCron).toLocaleString(
+      DateTime.TIME_SIMPLE
+    );
   });
 
   return model;

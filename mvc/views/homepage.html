@@ -11,6 +11,7 @@
             <th>Requested Price</th>
             <th>Current Market Price</th>
             <th>TCGPlayer Link</th>
+            <th>Next Run</th>
             <th>Edit</th>
             <th>Remove</th>
           </tr>
@@ -24,6 +25,7 @@
               <td>{card.requestedPrice}</td>
               <td>{card.marketPrice}</td>
               <td><a href="{card.tcgLink}">TCGPlayer</a></td>
+              <td>{card.nextRun}</td>
               <td><button>...</button></td>
               <td><a href="/removeCard/{card.identifier}">X</a></td>
             </tr>
