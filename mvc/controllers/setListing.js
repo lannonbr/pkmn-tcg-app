@@ -1,5 +1,6 @@
 const fs = require("fs");
 const pokemon = require("pokemontcgsdk");
+const { saveCard, removeCard } = require("../models/cards");
 pokemon.configure({ apiKey: process.env["POKEMON_TCG_API_TOKEN"] });
 require("dotenv").config();
 
@@ -55,6 +56,8 @@ module.exports = (router, app) => {
     let model = require("../models/global")(req, res);
 
     model.cardDetails = JSON.stringify(card, null, 2);
+    // console.log(card);
+
     model.cardPrices = JSON.stringify(card.tcgplayer, null, 2);
     model.cardName = card.name;
     model.cardPic = card.images.small;
@@ -69,7 +72,31 @@ module.exports = (router, app) => {
       }
     );
 
+    model.cardMetadata = JSON.stringify({
+      identifier: card.id,
+      name: card.name,
+      rarity: card.rarity,
+      tcgLink: model.tcgPlayerUrl,
+      prices: model.priceList,
+    });
+
     model.content.pageTitle = `Card: ${card.name} (${cardId})`;
     res.render("card", model);
+  });
+
+  router.route("/saveCard").post((req, res) => {
+    const card = req.body;
+
+    card.uuid = require("uuid").v4();
+
+    saveCard(card);
+
+    res.redirect(`/card/${req.body.identifier}`);
+  });
+
+  router.route("/removeCard/:id").get((req, res) => {
+    removeCard(req.params.id);
+
+    res.redirect("/");
   });
 };

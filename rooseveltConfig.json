@@ -9,6 +9,7 @@
   "viewsPath": "mvc/views",
   "viewEngine": ["html:teddy"],
   "controllersPath": "mvc/controllers",
+  "csrfProtection": false,
   "css": {
     "sourcePath": "css",
     "compiler": {

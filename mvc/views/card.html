@@ -8,11 +8,11 @@
       <loop through="priceList" val="priceItem">
         <p>{priceItem.type} - {priceItem.marketPrice}</p>
       </loop>
-      <!-- <pre>{cardDetails}</pre> -->
+      <pre id="metadata" style="display: none">{cardMetadata}</pre>
       <!-- <pre>{cardPrices}</pre> -->
       <p>TCGPlayer Link: <a href="{tcgPlayerUrl}">{tcgPlayerUrl}</a></p>
 
-      <button>Add to watch list</button>
+      <button type="button" id="addToWatchlistBtn">Add to watch list</button>
     </article>
   </arg>
 </include>

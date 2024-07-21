@@ -8,22 +8,24 @@
             <th>Name</th>
             <th>Identifier</th>
             <th>Rarity</th>
-            <th>Current Market Price</th>
             <th>Requested Price</th>
+            <th>Current Market Price</th>
             <th>TCGPlayer Link</th>
             <th>Edit</th>
+            <th>Remove</th>
           </tr>
         </thead>
         <tbody>
-          <loop through="posts" val="post">
+          <loop through="cards" val="card">
             <tr>
-              <td>{post.name}</td>
-              <td>{post.identifier}</td>
-              <td>{post.rarity}</td>
-              <td>{post.currentMarketPrice}</td>
-              <td>{post.requestedPrice}</td>
-              <td><a href="{post.tcgLink}">TCGPlayer</a></td>
+              <td>{card.cardName}</td>
+              <td><a href="/card/{card.identifier}">{card.identifier}</a></td>
+              <td>{card.rarity}</td>
+              <td>{card.requestedPrice}</td>
+              <td>{card.marketPrice}</td>
+              <td><a href="{card.tcgLink}">TCGPlayer</a></td>
               <td><button>...</button></td>
+              <td><a href="/removeCard/{card.identifier}">X</a></td>
             </tr>
           </loop>
         </tbody>
