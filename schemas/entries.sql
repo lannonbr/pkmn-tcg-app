@@ -1,4 +1,4 @@
-CREATE TABLE followedCards IF NOT EXISTS (
+CREATE TABLE IF NOT EXISTS followedCards (
   uuid TEXT PRIMARY KEY,
   identifier TEXT,
   cardName TEXT,

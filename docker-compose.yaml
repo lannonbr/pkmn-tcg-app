@@ -3,5 +3,7 @@ services:
     image: ghcr.io/lannonbr/pkmn-tcg-app:latest
     volumes:
       - "./data:/opt/data"
-    envFile: .env
+    ports:
+      - "11428:11428"
+    env_file: .env
     restart: unless-stopped
