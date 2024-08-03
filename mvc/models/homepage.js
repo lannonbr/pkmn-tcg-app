@@ -1,16 +1,6 @@
-const { CronJob, sendAt } = require("cron");
+const { sendAt } = require("cron");
 const { DateTime } = require("luxon");
 const { getCards } = require("./cards");
-
-// const job = new CronJob(
-//   "* * * * *",
-//   function () {
-//     console.log("TICK");
-//   },
-//   null,
-//   true,
-//   "America/New_York"
-// );
 
 module.exports = (model) => {
   const dollarFormatter = new Intl.NumberFormat("en-us", {

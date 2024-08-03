@@ -25,8 +25,15 @@ function removeCard(id) {
   appDb.db.prepare("DELETE FROM followedCards WHERE identifier = ?").run(id);
 }
 
+function updatePrice(id, marketPrice) {
+  appDb.db
+    .prepare("UPDATE followedCards SET marketPrice = ? WHERE identifier = ?")
+    .run(marketPrice, id);
+}
+
 module.exports = {
   getCards,
   saveCard,
   removeCard,
+  updatePrice,
 };

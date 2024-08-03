@@ -1,9 +1,8 @@
 const fs = require("fs");
+const path = require("path");
 const pokemon = require("pokemontcgsdk");
 const { saveCard, removeCard } = require("../models/cards");
-const path = require("path");
-pokemon.configure({ apiKey: process.env["POKEMON_TCG_API_TOKEN"] });
-require("dotenv").config();
+const scheduleJobs = require("../../lib/scheduleJobs");
 
 const usdFormatter = new Intl.NumberFormat("en-us", {
   style: "currency",
@@ -90,11 +89,15 @@ module.exports = (router, app) => {
 
     saveCard(card);
 
-    res.redirect(`/card/${req.body.identifier}`);
+    scheduleJobs();
+
+    res.redirect(`/`);
   });
 
   router.route("/removeCard/:id").get((req, res) => {
     removeCard(req.params.id);
+
+    scheduleJobs();
 
     res.redirect("/");
   });
