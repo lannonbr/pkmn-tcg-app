@@ -1,0 +1,7 @@
+services:
+  pkmnTcgApp:
+    image: ghcr.io/lannonbr/pkmn-tcg-app:latest
+    volumes:
+      - "./data:/opt/data"
+    envFile: .env
+    restart: unless-stopped
