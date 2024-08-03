@@ -8,4 +8,4 @@ RUN apk add sqlite3
 COPY . .
 RUN npm install
 
-ENTRYPOINT [ "startup.sh" ]
+ENTRYPOINT [ "/opt/docker-entrypoint.sh" ]
