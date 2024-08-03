@@ -23,7 +23,7 @@ fs.writeFileSync(
 
 const setsPaths = fs.readdirSync("./pokemon-tcg-data/cards/en/");
 
-fs.mkdirSync("./data/sets");
+fs.mkdirSync("./data/sets", { recursive: true });
 
 for (let setPath of setsPaths) {
   const set = require(`../pokemon-tcg-data/cards/en/${setPath}`);
