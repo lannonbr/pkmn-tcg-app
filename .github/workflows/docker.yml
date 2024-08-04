@@ -10,6 +10,8 @@ jobs:
     permissions:
       contents: write
       packages: write
+      attestations: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - name: Set up QEMU
@@ -23,6 +25,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push Docker image
+        id: push
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -30,6 +33,12 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ghcr.io/lannonbr/pkmn-tcg-app:latest
+      - name: Generate artifact attestation
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-name: ghcr.io/lannonbr/pkmn-tcg-app
+          subject-digest: ${{ steps.push.outputs.digest }}
+          push-to-registry: true
       - name: Prune old images
         run: |
           cd .github/actions/prune-containers
