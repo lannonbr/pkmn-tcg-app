@@ -1,0 +1,16 @@
+{
+  "name": "prune-containers",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@octokit/rest": "^21.0.1",
+    "dayjs": "^1.11.12"
+  }
+}
