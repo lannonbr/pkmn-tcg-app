@@ -14,10 +14,10 @@
     "cron": "^3.1.7",
     "dotenv": "^16.4.5",
     "less": "~4.2.0",
-    "luxon": "^3.4.4",
+    "luxon": "^3.5.0",
     "pokemontcgsdk": "^2.0.0",
     "roosevelt": "~0.22.16",
-    "teddy": "~0.6.7",
+    "teddy": "~0.6.9",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
@@ -25,8 +25,8 @@
     "nodemon": "~3.1.4",
     "postcss-less": "~6.0.0",
     "standard": "~17.1.0",
-    "stylelint": "~16.7.0",
-    "stylelint-config-standard": "~36.0.0"
+    "stylelint": "~16.8.1",
+    "stylelint-config-standard": "~36.0.1"
   },
   "nodemonConfig": {
     "ignore": [
