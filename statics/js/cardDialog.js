@@ -26,7 +26,7 @@ function createSaveCardDialog() {
 
     <label for="requestedPrice">Requested Price:</label>
     <input type="text" name="requestedPrice" id="requestedPrice" required />
-    <label for="refreshCron">Schedule for refreshing:</label>
+    <label for="refreshCron">Schedule for refreshing (cron format, ref: <a href="https://crontab.guru">crontab.guru</a>):</label>
     <input type="text" name="refreshCron" id="refreshCron" required />
     <button type="submit">Submit</button>
   `;
