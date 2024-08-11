@@ -13,7 +13,6 @@
     "better-sqlite3": "^11.1.2",
     "cron": "^3.1.7",
     "dotenv": "^16.4.5",
-    "less": "~4.2.0",
     "luxon": "^3.5.0",
     "pokemontcgsdk": "^2.0.0",
     "roosevelt": "~0.22.16",
@@ -24,10 +23,7 @@
   "devDependencies": {
     "eslint-plugin-html": "~8.1.1",
     "nodemon": "~3.1.4",
-    "postcss-less": "~6.0.0",
-    "standard": "~17.1.0",
-    "stylelint": "~16.8.1",
-    "stylelint-config-standard": "~36.0.1"
+    "standard": "~17.1.0"
   },
   "nodemonConfig": {
     "ignore": [
