@@ -19,5 +19,7 @@ module.exports = (model) => {
     );
   });
 
+  model.count = model.cards.length;
+
   return model;
 };
