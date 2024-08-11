@@ -1,7 +1,20 @@
 <include src="layouts/main">
   <arg pageContent>
     <article id="homepage">
-      <a href="/new">Back to Set Listing</a>
+      <a class="back-to-set-listing" href="/new">&laquo; Back to Set Listing</a>
+      <h2>Set Information</h2>
+      <div id="set-list-header">
+        <div>
+          <img class="set-logo" src="{set.image}" alt="Logo for {set.name}" />
+        </div>
+        <div>
+          <p>Release Date: {set.releaseDate}</p>
+          <p>
+            Card Count: {set.total} cards (+{set.secretRares} secret rare cards)
+          </p>
+        </div>
+      </div>
+      <h2>Cards:</h2>
       <ul class="setList">
         <loop through="setList" val="card">
           <li>

@@ -45,7 +45,7 @@ module.exports = (router, app) => {
     res.render("setListing", model);
   });
 
-  router.route("/new/:id").get((req, res) => {
+  router.route("/new/:id").get(async (req, res) => {
     const setId = req.params.id;
 
     let model = require("../models/global")(req, res);
@@ -56,7 +56,17 @@ module.exports = (router, app) => {
       )
     );
 
-    model.content.pageTitle = `Set Listing: ${setId}`;
+    const set = await pokemon.set.find(setId);
+
+    model.set = {
+      name: set.name,
+      image: set.images.logo,
+      releaseDate: set.releaseDate,
+      total: set.printedTotal,
+      secretRares: set.total - set.printedTotal,
+    };
+
+    model.content.pageTitle = `Set Listing: ${set.name}`;
     res.render("setList", model);
   });
 
