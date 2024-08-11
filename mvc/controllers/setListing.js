@@ -19,6 +19,20 @@ module.exports = (router, app) => {
 
     model.sets = model.sets.reverse();
 
+    let setsByYear = {};
+
+    for (let set of model.sets) {
+      let setYear = /(\d{4})/.exec(set.description)[0];
+
+      if (setsByYear[setYear] === undefined) {
+        setsByYear[setYear] = [set];
+      } else {
+        setsByYear[setYear].push(set);
+      }
+    }
+
+    model.setsByYear = Object.entries(setsByYear).reverse();
+
     model.newSets = model.sets.slice(0, 4);
 
     for (const set of model.newSets) {

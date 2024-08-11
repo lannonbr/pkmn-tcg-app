@@ -15,14 +15,19 @@
         </loop>
       </ul>
       <h2>All Pokemon Sets</h2>
-      <ul class="setListingList">
-        <loop through="sets" val="set">
-          <li>
-            {set.name} - {set.description} -
-            <a href="/new/{set.value}">{set.value}</a>
-          </li>
-        </loop>
-      </ul>
+      <loop through="setsByYear" val="yearGroup">
+        <section>
+          <h3>{yearGroup.0}</h3>
+          <ul class="setListingList">
+            <loop through="yearGroup.1" val="set">
+              <li>
+                {set.name} - {set.description} -
+                <a href="/new/{set.value}">{set.value}</a>
+              </li>
+            </loop>
+          </ul>
+        </section>
+      </loop>
     </article>
   </arg>
 </include>
