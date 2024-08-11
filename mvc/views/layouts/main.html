@@ -8,15 +8,17 @@
     <link rel="stylesheet" href="/css/styles.css" />
     <script src="/js/main.js" defer></script>
   </head>
-  <body class="no-js">
-    <main>
-      <header>
-        <h1>{content.appTitle} - {content.pageTitle}</h1>
-        <a href="/">Home</a>
+  <body class="no-js font-sans">
+    <main class="flex flex-col">
+      <header class="bg-violet-800 px-5 flex items-center text-white">
+        <h1 class="text-3xl font-bold my-6 flex-1">
+          {content.appTitle} - {content.pageTitle}
+        </h1>
+        <a class="font-bold text-xl text-white" href="/">Home</a>
       </header>
       {pageContent|s}
     </main>
-    <footer>
+    <footer class="bg-gray-300 px-3 py-4 text-center">
       <p>&copy; Copyright <a href="https://lannonbr.com">Benjamin Lannon</a></p>
       <p>
         All data is obtaianed via the

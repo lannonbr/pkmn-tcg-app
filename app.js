@@ -1,8 +1,17 @@
 const appDb = require("./appDb");
 const sqlite = require("better-sqlite3");
 require("dotenv").config();
-
+const { execSync } = require("child_process");
+const fs = require("fs");
 const pokemon = require("pokemontcgsdk");
+
+if (!fs.existsSync("./public/css")) {
+  fs.mkdirSync("./public/css", { recursive: true });
+}
+
+execSync(
+  "npx tailwindcss -i ./statics/css/styles.css -o ./public/css/styles.css"
+);
 
 if (process.env.POKEMON_TCG_API_TOKEN == undefined) {
   console.log(

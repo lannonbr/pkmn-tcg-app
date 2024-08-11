@@ -13,9 +13,7 @@
   "css": {
     "sourcePath": "css",
     "compiler": {
-      "enable": true,
-      "module": "less",
-      "options": {}
+      "enable": false
     },
     "output": "css",
     "versionFile": null

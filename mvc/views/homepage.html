@@ -1,13 +1,13 @@
 <include src="layouts/main">
   <arg pageContent>
     <article id="homepage">
-      <div id="homepage-header">
-        <p>Tracking prices for {count} cards:</p>
-        <a href="/new">Browse Cards</a>
+      <div class="flex items-center justify-between">
+        <p class="text-xl">Tracking prices for {count} cards:</p>
+        <a class="green-btn" href="/new">Browse Cards</a>
       </div>
-      <table>
+      <table class="mt-3 border-collapse w-full">
         <thead>
-          <tr>
+          <tr class="text-left border-b-black border-b-2">
             <th>Name</th>
             <th>Identifier</th>
             <th>Rarity</th>
@@ -21,7 +21,7 @@
         </thead>
         <tbody>
           <loop through="cards" val="card">
-            <tr>
+            <tr class="border-t border-t-gray-400">
               <td>{card.cardName}</td>
               <td><a href="/card/{card.identifier}">{card.identifier}</a></td>
               <td>{card.rarity}</td>
@@ -31,7 +31,11 @@
               <td>{card.nextRun}</td>
               <td><button>...</button></td>
               <td>
-                <a class="remove" href="/removeCard/{card.identifier}">X</a>
+                <a
+                  class="text-red-700 font-bold"
+                  href="/removeCard/{card.identifier}"
+                  >X</a
+                >
               </td>
             </tr>
           </loop>

@@ -1,16 +1,18 @@
 <include src="layouts/main">
   <arg pageContent>
     <article id="homepage">
-      <a href="/new/{set}">Back to set</a>
-      <br />
-      <br />
+      <a class="green-btn" href="/new/{set}">&laquo; Back to Set</a>
+      <h3 class="mt-4">Card Art</h3>
       <img src="{cardPic}" alt="Card preview for {cardName}" />
+      <h3 class="mt-4">Pricing</h3>
       <loop through="priceList" val="priceItem">
-        <p>{priceItem.type} - {priceItem.marketPrice}</p>
+        <p class="py-2">{priceItem.type} - {priceItem.marketPrice}</p>
       </loop>
       <pre id="metadata" style="display: none">{cardMetadata}</pre>
-      <!-- <pre>{cardPrices}</pre> -->
-      <p>TCGPlayer Link: <a href="{tcgPlayerUrl}">{tcgPlayerUrl}</a></p>
+
+      <p class="py-2">
+        TCGPlayer Link: <a href="{tcgPlayerUrl}">{tcgPlayerUrl}</a>
+      </p>
 
       <button type="button" id="addToWatchlistBtn">Add to watch list</button>
     </article>

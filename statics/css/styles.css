@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+ul {
+  @apply ml-4 mb-4;
+}
+
+ul li {
+  @apply list-disc;
+}
+
+h2 {
+  @apply text-2xl font-bold my-4;
+}
+
+h3 {
+  @apply text-xl mb-2 font-bold;
+}
+
+a {
+  @apply text-blue-700 hover:underline;
+}
+
+input,
+button {
+  @apply border border-black p-1;
+}
+
+button {
+  @apply bg-gray-200 my-2 rounded;
+}
+
+input {
+  @apply mx-2 px-2;
+}
+
+button[type="submit"] {
+  @apply bg-green-600 text-white rounded-sm border-none px-2 hover:shadow-lg;
+}
+
+article {
+  @apply m-5 flex-grow;
+}
+
+.green-btn {
+  @apply p-2 rounded text-white bg-green-600 hover:shadow-lg hover:no-underline;
+}
+
+table th,
+table td {
+  @apply p-1;
+}
+
+table th {
+  @apply pb-3;
+}
+
+ul.setList {
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
+main {
+  min-height: calc(100vh - 100px);
+}

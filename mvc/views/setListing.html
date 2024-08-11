@@ -1,12 +1,14 @@
 <include src="layouts/main">
   <arg pageContent>
     <article id="homepage">
-      <h2>Newest Sets</h2>
+      <h2 class="mt-0">Newest Sets</h2>
 
-      <ul class="setListingList newSets">
+      <ul class="ml-0 grid grid-cols-4 gap-y-2 gap-x-5 pl-0">
         <loop through="newSets" val="set">
-          <li>
-            <img src="{set.img}" alt="Logo for {set.name}" />
+          <li
+            class="p-8 flex flex-col justify-center items-center border border-black rounded-lg"
+          >
+            <img src="{set.img}" alt="Logo for {set.name}" class="mb-6 w-48" />
             <p>
               <span>{set.name} -</span>
               <a href="/new/{set.value}">{set.value}</a>
@@ -18,11 +20,13 @@
       <loop through="setsByYear" val="yearGroup">
         <section>
           <h3>{yearGroup.0}</h3>
-          <ul class="setListingList">
+          <ul class="ml-8 gap-y-2 grid grid-cols-2">
             <loop through="yearGroup.1" val="set">
               <li>
                 {set.name} - {set.description} -
-                <a href="/new/{set.value}">{set.value}</a>
+                <a class="text-blue-700 hover:underline" href="/new/{set.value}"
+                  >{set.value}</a
+                >
               </li>
             </loop>
           </ul>

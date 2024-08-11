@@ -1,13 +1,13 @@
 <include src="layouts/main">
   <arg pageContent>
     <article id="homepage">
-      <a class="back-to-set-listing" href="/new">&laquo; Back to Set Listing</a>
+      <a class="green-btn" href="/new">&laquo; Back to Set Listing</a>
       <h2>Set Information</h2>
-      <div id="set-list-header">
-        <div>
-          <img class="set-logo" src="{set.image}" alt="Logo for {set.name}" />
+      <div id="set-list-header" class="flex mt-8">
+        <div class="pr-12">
+          <img class="w-64" src="{set.image}" alt="Logo for {set.name}" />
         </div>
-        <div>
+        <div class="text-xl">
           <p>Release Date: {set.releaseDate}</p>
           <p>
             Card Count: {set.total} cards (+{set.secretRares} secret rare cards)
@@ -15,7 +15,7 @@
         </div>
       </div>
       <h2>Cards:</h2>
-      <ul class="setList">
+      <ul class="setList grid gap-4">
         <loop through="setList" val="card">
           <li>
             <span>{card.name} -</span>
