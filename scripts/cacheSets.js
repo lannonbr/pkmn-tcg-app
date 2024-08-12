@@ -42,4 +42,4 @@ for (let setPath of setsPaths) {
   );
 }
 
-execSync("rm -rf pokemon-tcg-data");
+fs.rmSync("pokemon-tcg-data", {recursive: true});
