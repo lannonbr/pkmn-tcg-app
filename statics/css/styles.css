@@ -63,3 +63,15 @@ ul.setList {
 main {
   min-height: calc(100vh - 100px);
 }
+
+aside {
+  @apply fixed top-0 right-0 w-96 h-full shadow-2xl bg-white p-4 overflow-auto;
+}
+
+aside form {
+  @apply flex flex-col mt-4;
+}
+
+.closeBtn {
+  @apply border-0 text-red-700 bg-transparent font-bold;
+}

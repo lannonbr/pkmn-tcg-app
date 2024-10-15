@@ -1,7 +1,12 @@
 const fs = require("fs");
 const path = require("path");
 const pokemon = require("pokemontcgsdk");
-const { saveCard, removeCard } = require("../models/cards");
+const {
+  saveCard,
+  removeCard,
+  getCard,
+  updateFollowCard,
+} = require("../models/cards");
 const scheduleJobs = require("../../lib/scheduleJobs");
 
 const usdFormatter = new Intl.NumberFormat("en-us", {
@@ -68,6 +73,24 @@ module.exports = (router, app) => {
 
     model.content.pageTitle = `Set Listing: ${set.name}`;
     res.render("setList", model);
+  });
+
+  router.route("/followedCard/:id").get((req, res) => {
+    const cardId = req.params.id;
+
+    const card = getCard(cardId);
+
+    return res.json(card);
+  });
+
+  router.route("/updateFollowCard").post((req, res) => {
+    const { id, requestedPrice, refreshCron } = req.body;
+
+    updateFollowCard(id, requestedPrice, refreshCron);
+
+    scheduleJobs();
+
+    return res.redirect("/");
   });
 
   router.route("/card/:id").get(async (req, res) => {

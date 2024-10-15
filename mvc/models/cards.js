@@ -4,6 +4,12 @@ function getCards() {
   return appDb.db.prepare("SELECT * FROM followedCards").all();
 }
 
+function getCard(cardId) {
+  return appDb.db
+    .prepare("SELECT * FROM followedCards where identifier = ?")
+    .get(cardId);
+}
+
 function saveCard(card) {
   const insertStmt = appDb.db.prepare(
     "INSERT INTO followedCards (uuid, identifier, cardName, rarity, marketPrice, requestedPrice, tcgLink, refreshCron) VALUES (@uuid, @identifier, @cardName, @rarity, @marketPrice, @requestedPrice, @tcgLink, @refreshCron)"
@@ -31,9 +37,19 @@ function updatePrice(id, marketPrice) {
     .run(marketPrice, id);
 }
 
+function updateFollowCard(id, requestedPrice, refreshCron) {
+  appDb.db
+    .prepare(
+      "UPDATE followedCards SET requestedPrice = ?, refreshCron = ? WHERE identifier = ?"
+    )
+    .run(requestedPrice, refreshCron, id);
+}
+
 module.exports = {
+  getCard,
   getCards,
   saveCard,
   removeCard,
   updatePrice,
+  updateFollowCard,
 };
