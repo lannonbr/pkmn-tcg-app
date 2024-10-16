@@ -61,6 +61,10 @@ module.exports = (router, app) => {
       )
     );
 
+    if (setId.startsWith("sv")) {
+      model.series = "SV";
+    }
+
     const set = await pokemon.set.find(setId);
 
     model.set = {

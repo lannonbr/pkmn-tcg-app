@@ -15,14 +15,29 @@
         </div>
       </div>
       <h2>Cards:</h2>
-      <ul class="setList grid gap-4">
-        <loop through="setList" val="card">
-          <li>
-            <span>{card.name} -</span>
-            <a href="/card/{card.value}">{card.value}</a>
-          </li>
+      <if series="SV">
+        <loop through="setList" val="group">
+          <h3>{group.type}</h3>
+          <ul class="setList grid gap-4">
+            <loop through="group.cards" val="card">
+              <li>
+                <span>{card.name} -</span>
+                <a href="/card/{card.value}">{card.value}</a>
+              </li>
+            </loop>
+          </ul>
         </loop>
-      </ul>
+      </if>
+      <else>
+        <ul class="setList grid gap-4">
+          <loop through="setList" val="card">
+            <li>
+              <span>{card.name} -</span>
+              <a href="/card/{card.value}">{card.value}</a>
+            </li>
+          </loop>
+        </ul>
+      </else>
     </article>
   </arg>
 </include>
