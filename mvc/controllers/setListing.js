@@ -121,13 +121,22 @@ module.exports = (router, app) => {
       }
     );
 
-    model.cardMetadata = JSON.stringify({
+    let cardMetadata = {
       identifier: card.id,
       name: card.name,
       rarity: card.rarity,
       tcgLink: model.tcgPlayerUrl,
       prices: model.priceList,
-    });
+    };
+
+    const followCard = getCard(cardId);
+
+    if (followCard != undefined) {
+      cardMetadata.requestedPrice = followCard.requestedPrice;
+      cardMetadata.refreshCron = followCard.refreshCron;
+    }
+
+    model.cardMetadata = JSON.stringify(cardMetadata);
 
     model.content.pageTitle = `Card: ${card.name} (${cardId})`;
     res.render("card", model);

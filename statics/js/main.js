@@ -1,9 +1,16 @@
 const { createSaveCardDialog } = require("./cardDialog");
 
 if (window.location.href.includes("/card/")) {
-  document
-    .getElementById("addToWatchlistBtn")
-    .addEventListener("click", createSaveCardDialog);
+  const data = JSON.parse(document.getElementById("metadata").innerText);
+
+  if (data.requestedPrice) {
+    createSaveCardDialog();
+    document.getElementById("addToWatchlistBtn").remove();
+  } else {
+    document
+      .getElementById("addToWatchlistBtn")
+      .addEventListener("click", createSaveCardDialog);
+  }
 }
 
 if (window.location.pathname == "/") {

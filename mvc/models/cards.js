@@ -11,20 +11,25 @@ function getCard(cardId) {
 }
 
 function saveCard(card) {
-  const insertStmt = appDb.db.prepare(
-    "INSERT INTO followedCards (uuid, identifier, cardName, rarity, marketPrice, requestedPrice, tcgLink, refreshCron) VALUES (@uuid, @identifier, @cardName, @rarity, @marketPrice, @requestedPrice, @tcgLink, @refreshCron)"
-  );
+  // Update the card if it already has been saved
+  if (getCard(card.identifier) != undefined) {
+    updateFollowCard(card.identifier, card.requestedPrice, card.refreshCron);
+  } else {
+    const insertStmt = appDb.db.prepare(
+      "INSERT INTO followedCards (uuid, identifier, cardName, rarity, marketPrice, requestedPrice, tcgLink, refreshCron) VALUES (@uuid, @identifier, @cardName, @rarity, @marketPrice, @requestedPrice, @tcgLink, @refreshCron)"
+    );
 
-  insertStmt.run({
-    uuid: card.uuid,
-    identifier: card.identifier,
-    cardName: card.name,
-    rarity: card.rarity,
-    marketPrice: card.marketPrice,
-    requestedPrice: card.requestedPrice,
-    tcgLink: card.tcgLink,
-    refreshCron: card.refreshCron,
-  });
+    insertStmt.run({
+      uuid: card.uuid,
+      identifier: card.identifier,
+      cardName: card.name,
+      rarity: card.rarity,
+      marketPrice: card.marketPrice,
+      requestedPrice: card.requestedPrice,
+      tcgLink: card.tcgLink,
+      refreshCron: card.refreshCron,
+    });
+  }
 }
 
 function removeCard(id) {

@@ -25,9 +25,13 @@ function createSaveCardDialog() {
     <input type="hidden" name="tcgLink" value="${data.tcgLink}" />
 
     <label for="requestedPrice">Requested Price:</label>
-    <input type="text" name="requestedPrice" id="requestedPrice" required />
+    <input type="text" name="requestedPrice" id="requestedPrice" required ${
+      data.requestedPrice != undefined ? `value="${data.requestedPrice}"` : ""
+    } />
     <label for="refreshCron">Schedule for refreshing (cron format, ref: <a href="https://crontab.guru">crontab.guru</a>):</label>
-    <input type="text" name="refreshCron" id="refreshCron" required />
+    <input type="text" name="refreshCron" id="refreshCron" required ${
+      data.refreshCron != undefined ? `value="${data.refreshCron}"` : ""
+    }/>
     <button type="submit">Submit</button>
   `;
 
