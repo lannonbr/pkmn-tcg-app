@@ -1,6 +1,6 @@
 services:
   pkmnTcgApp:
-    image: ghcr.io/lannonbr/pkmn-tcg-app:latest
+    image: ghcr.io/lannonbr/pkmn-tcg-app:main
     volumes:
       - "./data:/opt/data"
     ports:

@@ -2,6 +2,8 @@ on:
   push:
     branches:
       - "main"
+    tags:
+      - "v*"
 name: Docker
 jobs:
   build:
@@ -29,7 +31,7 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/lannonbr/pkmn-tcg-app:latest
+          tags: ghcr.io/lannonbr/pkmn-tcg-app:${{ github.ref_name }}
       - name: Prune old images
         run: |
           cd .github/actions/prune-containers
