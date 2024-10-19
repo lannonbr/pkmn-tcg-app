@@ -27,7 +27,8 @@
   },
   "nodemonConfig": {
     "ignore": [
-      "public/"
+      "public/",
+      "scripts"
     ],
     "ext": "html js json css"
   },
