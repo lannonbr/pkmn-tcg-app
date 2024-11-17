@@ -8,6 +8,7 @@ const {
   updateFollowCard,
 } = require("../models/cards");
 const scheduleJobs = require("../../lib/scheduleJobs");
+const { randomUUID } = require("node:crypto");
 
 const usdFormatter = new Intl.NumberFormat("en-us", {
   style: "currency",
@@ -148,7 +149,7 @@ module.exports = (router, app) => {
   router.route("/saveCard").post((req, res) => {
     const card = req.body;
 
-    card.uuid = require("uuid").v4();
+    card.uuid = randomUUID();
 
     saveCard(card);
 
