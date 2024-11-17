@@ -10,19 +10,17 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "better-sqlite3": "^11.4.0",
-    "cron": "^3.1.7",
+    "better-sqlite3": "^11.5.0",
+    "cron": "^3.2.1",
     "dotenv": "^16.4.5",
     "luxon": "^3.5.0",
     "pokemontcgsdk": "^2.0.0",
     "roosevelt": "~0.23.2",
-    "tailwindcss": "^3.4.14",
-    "teddy": "~0.6.14"
+    "tailwindcss": "^3.4.15",
+    "teddy": "~0.6.19"
   },
   "devDependencies": {
-    "eslint-plugin-html": "~8.1.2",
-    "nodemon": "~3.1.7",
-    "standard": "~17.1.2"
+    "nodemon": "~3.1.7"
   },
   "nodemonConfig": {
     "ignore": [
@@ -41,16 +39,12 @@
     "d": "nodemon app.js --development-mode",
     "dev": "nodemon app.js --development-mode",
     "development": "nodemon app.js --development-mode",
-    "lint": "npm run standard && npm run stylelint",
     "p": "nodemon app.js --production-mode",
     "prod": "nodemon app.js --production-mode",
     "production": "nodemon app.js --production-mode",
     "x": "nodemon app.js --production-proxy-mode",
     "prodproxy": "nodemon app.js --production-proxy-mode",
     "production-proxy": "nodemon app.js --production-proxy-mode",
-    "standard": "./node_modules/.bin/standard",
-    "start": "nodemon app.js --production-mode",
-    "stylelint": "./node_modules/.bin/stylelint \"statics/css/**/*.less\"",
-    "test": "npm run lint"
+    "start": "nodemon app.js --production-mode"
   }
 }
