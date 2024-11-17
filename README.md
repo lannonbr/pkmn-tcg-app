@@ -24,7 +24,6 @@ Docker compose:
 
 ## Env Variables
 
-Both of these are required.
-
-- POKEMON_TCG_API_TOKEN: API token from https://pokemontcg.io/ to get card & pricing data.
-- DISCORD_WEBHOOK_URL: URL for discord alerts. Ref: https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
+- POKEMON_TCG_API_TOKEN (**Required**): API token from https://pokemontcg.io/ to get card & pricing data.
+- DISCORD_WEBHOOK_URL (**Required**): URL for discord alerts. Ref: https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
+- PKMN_TCG_APP_ROUTE_PREFIX (_Optional_): Path prefix to run the server on
