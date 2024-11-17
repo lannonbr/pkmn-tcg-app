@@ -11,7 +11,7 @@
             <img src="{set.img}" alt="Logo for {set.name}" class="mb-6 w-48" />
             <p>
               <span>{set.name} -</span>
-              <a href="/new/{set.value}">{set.value}</a>
+              <a href="{routePrefix}/new/{set.value}">{set.value}</a>
             </p>
           </li>
         </loop>
@@ -24,7 +24,9 @@
             <loop through="yearGroup.1" val="set">
               <li>
                 {set.name} - {set.description} -
-                <a class="text-blue-700 hover:underline" href="/new/{set.value}"
+                <a
+                  class="text-blue-700 hover:underline"
+                  href="{routePrefix}/new/{set.value}"
                   >{set.value}</a
                 >
               </li>

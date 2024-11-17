@@ -30,9 +30,29 @@ if (process.env.DISCORD_WEBHOOK_URL == undefined) {
 pokemon.configure({ apiKey: process.env["POKEMON_TCG_API_TOKEN"] });
 
 const scheduleJobs = require("./lib/scheduleJobs");
-require("roosevelt")({
+const app = require("roosevelt")({
+  routePrefix: process.env.PKMN_TCG_APP_ROUTE_PREFIX,
   onServerInit: (app) => {
     appDb.db = sqlite("data/data.db");
     scheduleJobs();
   },
-}).startServer();
+});
+
+const routePrefix = app.expressApp.get("routePrefix") || "";
+
+// Middleware to re-route any res.redirect() call to proper location if route prefix is used
+if (routePrefix !== "") {
+  app.expressApp.use((req, res, next) => {
+    const redirect = res.redirect;
+
+    res.redirect = function (url) {
+      if (url.charAt(0) === "/" && !url.includes(routePrefix)) {
+        url = routePrefix + url;
+      }
+      redirect.call(this, url);
+    };
+    next();
+  });
+}
+
+app.startServer();

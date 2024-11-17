@@ -1,4 +1,8 @@
 function createSaveCardDialog() {
+  const routePrefix = document
+    .querySelector("meta[name='routePrefix']")
+    .getAttribute("content");
+
   const data = JSON.parse(document.getElementById("metadata").innerText);
 
   const form = document.createElement("form");
@@ -15,7 +19,7 @@ function createSaveCardDialog() {
     marketPrice = parseFloat(data.prices[0].marketPrice.slice(1));
   }
 
-  form.action = "/saveCard";
+  form.action = `${routePrefix}/saveCard`;
   form.method = "POST";
   form.innerHTML = `
     <input type="hidden" name="identifier" value="${data.identifier}" />

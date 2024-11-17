@@ -1,7 +1,9 @@
 <include src="layouts/main">
   <arg pageContent>
     <article id="homepage">
-      <a class="green-btn" href="/new">&laquo; Back to Set Listing</a>
+      <a class="green-btn" href="{routePrefix}/new"
+        >&laquo; Back to Set Listing</a
+      >
       <h2>Set Information</h2>
       <div id="set-list-header" class="flex mt-8">
         <div class="pr-12">
@@ -22,7 +24,7 @@
             <loop through="group.cards" val="card">
               <li>
                 <span>{card.name} -</span>
-                <a href="/card/{card.value}">{card.value}</a>
+                <a href="{routePrefix}/card/{card.value}">{card.value}</a>
               </li>
             </loop>
           </ul>
@@ -33,7 +35,7 @@
           <loop through="setList" val="card">
             <li>
               <span>{card.name} -</span>
-              <a href="/card/{card.value}">{card.value}</a>
+              <a href="{routePrefix}/card/{card.value}">{card.value}</a>
             </li>
           </loop>
         </ul>

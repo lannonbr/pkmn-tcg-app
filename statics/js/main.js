@@ -1,5 +1,9 @@
 const { createSaveCardDialog } = require("./cardDialog");
 
+const routePrefix = document
+  .querySelector("meta[name='routePrefix']")
+  .getAttribute("content");
+
 if (window.location.href.includes("/card/")) {
   const data = JSON.parse(document.getElementById("metadata").innerText);
 
@@ -13,7 +17,7 @@ if (window.location.href.includes("/card/")) {
   }
 }
 
-if (window.location.pathname == "/") {
+if (window.location.pathname == `${routePrefix}/`) {
   document.querySelectorAll(".editBtn").forEach((btn) => {
     btn.addEventListener("click", async (evt) => {
       let row = evt.target.parentElement.parentElement;
@@ -22,8 +26,8 @@ if (window.location.pathname == "/") {
         .getAttribute("href")
         .split("/card/")[1];
 
-      const card = await fetch(`/followedCard/${cardId}`).then((resp) =>
-        resp.json()
+      const card = await fetch(`${routePrefix}/followedCard/${cardId}`).then(
+        (resp) => resp.json()
       );
 
       const aside = document.createElement("aside");
@@ -50,7 +54,7 @@ if (window.location.pathname == "/") {
       let form = document.createElement("form");
 
       form.method = "post";
-      form.action = "/updateFollowCard";
+      form.action = `${routePrefix}/updateFollowCard`;
 
       form.innerHTML = `
         <input type="hidden" name="id" value="${cardId}" />

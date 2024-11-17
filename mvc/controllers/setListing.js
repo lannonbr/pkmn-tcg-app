@@ -17,6 +17,7 @@ const usdFormatter = new Intl.NumberFormat("en-us", {
 module.exports = (router, app) => {
   router.route("/new/").get(async (req, res) => {
     let model = require("../models/global")(req, res);
+    model.routePrefix = app.get("routePrefix") || "";
 
     model.sets = JSON.parse(
       fs.readFileSync(path.join(__dirname, "..", "..", "data", "sets.json"))
@@ -54,6 +55,7 @@ module.exports = (router, app) => {
     const setId = req.params.id;
 
     let model = require("../models/global")(req, res);
+    model.routePrefix = app.get("routePrefix") || "";
 
     model.setList = JSON.parse(
       fs.readFileSync(
@@ -103,6 +105,7 @@ module.exports = (router, app) => {
     const card = await pokemon.card.find(cardId);
 
     let model = require("../models/global")(req, res);
+    model.routePrefix = app.get("routePrefix") || "";
 
     model.cardDetails = JSON.stringify(card, null, 2);
     // console.log(card);
