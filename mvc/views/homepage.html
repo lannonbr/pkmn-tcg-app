@@ -3,7 +3,12 @@
     <article id="homepage">
       <div class="flex items-center justify-between">
         <p class="text-xl">Tracking prices for {count} cards:</p>
-        <a class="green-btn" href="{routePrefix}/new">Browse Cards</a>
+        <div class="flex gap-2">
+          <button type="button" class="green-btn" id="exportCardsBtn">
+            Export
+          </button>
+          <a class="green-btn" href="{routePrefix}/new">Browse Cards</a>
+        </div>
       </div>
       <table class="mt-3 border-collapse w-full">
         <thead>

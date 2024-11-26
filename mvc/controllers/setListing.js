@@ -6,6 +6,7 @@ const {
   removeCard,
   getCard,
   updateFollowCard,
+  getCards,
 } = require("../models/cards");
 const scheduleJobs = require("../../lib/scheduleJobs");
 const { randomUUID } = require("node:crypto");
@@ -50,6 +51,11 @@ module.exports = (router, app) => {
 
     model.content.pageTitle = "Set Listing";
     res.render("setListing", model);
+  });
+
+  router.route("/followedCards").get((req, res) => {
+    const cards = getCards();
+    return res.json(cards);
   });
 
   router.route("/new/:id").get(async (req, res) => {

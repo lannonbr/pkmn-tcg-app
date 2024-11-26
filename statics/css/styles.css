@@ -44,7 +44,7 @@ article {
 }
 
 .green-btn {
-  @apply p-2 rounded text-white bg-green-600 hover:shadow-lg hover:no-underline;
+  @apply p-2 rounded text-white bg-green-600 hover:shadow-lg hover:no-underline h-8 border-none m-0 inline-flex items-center justify-center;
 }
 
 table th,

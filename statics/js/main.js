@@ -18,6 +18,31 @@ if (window.location.href.includes("/card/")) {
 }
 
 if (window.location.pathname == `${routePrefix}/`) {
+  document
+    .querySelector("#exportCardsBtn")
+    .addEventListener("click", async (evt) => {
+      const cards = await fetch(`${routePrefix}/followedCards`).then((resp) =>
+        resp.json()
+      );
+
+      const blob = new Blob([JSON.stringify(cards)], {
+        type: "application/json",
+      });
+
+      const link = document.createElement("a");
+
+      const url = URL.createObjectURL(blob);
+
+      link.href = url;
+      link.download = `pkmn-tcg-app-export.json`;
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(url);
+    });
+
   document.querySelectorAll(".editBtn").forEach((btn) => {
     btn.addEventListener("click", async (evt) => {
       let row = evt.target.parentElement.parentElement;
