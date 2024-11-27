@@ -43,6 +43,34 @@ if (window.location.pathname == `${routePrefix}/`) {
       URL.revokeObjectURL(url);
     });
 
+  document.querySelector("#importCardsBtn").addEventListener("click", (evt) => {
+    const dialog = document.createElement("dialog");
+
+    dialog.id = "importDialog";
+
+    dialog.innerHTML = `
+        <h2>Import</h2>
+        <form method="post" action="/import">
+          <textarea id="content" name="content"></textarea>
+          <button type="button" class="cancelBtn">Cancel</button>
+          <input type="Submit" value="Submit" />
+        </form>
+      `;
+
+    dialog.querySelector(".cancelBtn").addEventListener("click", () => {
+      dialog.close();
+      dialog.remove();
+    });
+
+    dialog.addEventListener("close", () => {
+      dialog.remove();
+    });
+
+    document.body.appendChild(dialog);
+
+    dialog.showModal();
+  });
+
   document.querySelectorAll(".editBtn").forEach((btn) => {
     btn.addEventListener("click", async (evt) => {
       let row = evt.target.parentElement.parentElement;

@@ -75,3 +75,20 @@ aside form {
 .closeBtn {
   @apply border-0 text-red-700 bg-transparent font-bold;
 }
+
+#importDialog {
+  @apply p-4 flex flex-col w-96 h-96 border border-black;
+}
+
+#importDialog h2 {
+  @apply text-center;
+}
+
+#importDialog textarea {
+  @apply w-full border border-black h-32;
+}
+
+#importDialog button,
+#importDialog input[type="submit"] {
+  @apply w-full m-0 my-2 rounded-none border border-black bg-white;
+}

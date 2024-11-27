@@ -58,6 +58,19 @@ module.exports = (router, app) => {
     return res.json(cards);
   });
 
+  router.route("/import").post((req, res) => {
+    const content = JSON.parse(req.body.content);
+
+    for (let card of content) {
+      card.name = card.cardName;
+      saveCard(card);
+    }
+
+    scheduleJobs();
+
+    res.redirect("/");
+  });
+
   router.route("/new/:id").get(async (req, res) => {
     const setId = req.params.id;
 
