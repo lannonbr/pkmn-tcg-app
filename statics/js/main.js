@@ -21,7 +21,7 @@ if (window.location.pathname == `${routePrefix}/`) {
   document
     .querySelector("#exportCardsBtn")
     .addEventListener("click", async (evt) => {
-      const cards = await fetch(`${routePrefix}/followedCards`).then((resp) =>
+      const cards = await fetch(`${routePrefix}/cards`).then((resp) =>
         resp.json()
       );
 
@@ -50,7 +50,7 @@ if (window.location.pathname == `${routePrefix}/`) {
 
     dialog.innerHTML = `
         <h2>Import</h2>
-        <form method="post" action="/import">
+        <form method="post" action="${routePrefix}/cards/">
           <textarea id="content" name="content"></textarea>
           <button type="button" class="cancelBtn">Cancel</button>
           <input type="Submit" value="Submit" />
@@ -71,6 +71,24 @@ if (window.location.pathname == `${routePrefix}/`) {
     dialog.showModal();
   });
 
+  document.querySelectorAll(".removeCardBtn").forEach((btn) => {
+    btn.addEventListener("click", async (evt) => {
+      let cardId =
+        evt.target.parentElement.parentElement.querySelector(
+          "td:nth-child(2) a"
+        ).innerText;
+
+      const res = window.confirm(`Are you sure you want to delete ${cardId}`);
+      if (res) {
+        await fetch(`${routePrefix}/cards/${cardId}`, {
+          method: "DELETE",
+        });
+
+        window.location.reload();
+      }
+    });
+  });
+
   document.querySelectorAll(".editBtn").forEach((btn) => {
     btn.addEventListener("click", async (evt) => {
       let row = evt.target.parentElement.parentElement;
@@ -79,8 +97,8 @@ if (window.location.pathname == `${routePrefix}/`) {
         .getAttribute("href")
         .split("/card/")[1];
 
-      const card = await fetch(`${routePrefix}/followedCard/${cardId}`).then(
-        (resp) => resp.json()
+      const card = await fetch(`${routePrefix}/cards/${cardId}`).then((resp) =>
+        resp.json()
       );
 
       const aside = document.createElement("aside");
@@ -107,7 +125,7 @@ if (window.location.pathname == `${routePrefix}/`) {
       let form = document.createElement("form");
 
       form.method = "post";
-      form.action = `${routePrefix}/updateFollowCard`;
+      form.action = `${routePrefix}/cards/${card.identifier}`;
 
       form.innerHTML = `
         <input type="hidden" name="id" value="${cardId}" />

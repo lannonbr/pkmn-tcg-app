@@ -19,7 +19,7 @@ function createSaveCardDialog() {
     marketPrice = parseFloat(data.prices[0].marketPrice.slice(1));
   }
 
-  form.action = `${routePrefix}/saveCard`;
+  form.action = `${routePrefix}/cards`;
   form.method = "POST";
   form.innerHTML = `
     <input type="hidden" name="identifier" value="${data.identifier}" />
