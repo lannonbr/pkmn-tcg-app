@@ -27,3 +27,7 @@ Docker compose:
 - POKEMON_TCG_API_TOKEN (**Required**): API token from https://pokemontcg.io/ to get card & pricing data.
 - DISCORD_WEBHOOK_URL (**Required**): URL for discord alerts. Ref: https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
 - PKMN_TCG_APP_ROUTE_PREFIX (_Optional_): Path prefix to run the server on
+
+## Credits
+
+Credits to [Andrew Backes](https://andrewbackes.com/) for creating the [Pokemon TCG API](https://pokemontcg.io/) which supplies the card listings and price data from TCGPlayer.
