@@ -2,7 +2,7 @@
 
 A node app to track prices for Pokemon TCG cards based on prices from TCGPlayer. The main functionality will be sending Discord alerts when a card's market price drops below a price I would be comfortable buying it at.
 
-![pokemon-tcg-price-tracker](https://github.com/user-attachments/assets/58e3b439-5dc5-4b39-8cfc-0f29d17a3aaa)
+![pokemon-tcg-price-tracker](https://github.com/user-attachments/assets/4d86b0c6-c0c9-46a8-8aa5-940be18fea19)
 
 ## Setup
 
