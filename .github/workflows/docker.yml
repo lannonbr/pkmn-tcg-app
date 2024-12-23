@@ -33,9 +33,8 @@ jobs:
           push: true
           tags: ghcr.io/lannonbr/pkmn-tcg-app:${{ github.ref_name }}
       - name: Prune old images
-        run: |
-          cd .github/actions/prune-containers
-          npm install
-          node index.js
+        uses: lannonbr/prune-containers-action@1.0.0
+        with:
+          container-name: pkmn-tcg-app
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
