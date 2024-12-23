@@ -17,6 +17,7 @@ module.exports = (model) => {
     card.nextRun = sendAt(card.refreshCron).toLocaleString(
       DateTime.TIME_SIMPLE
     );
+    card.set = card.identifier.split("-")[0];
   });
 
   model.count = model.cards.length;

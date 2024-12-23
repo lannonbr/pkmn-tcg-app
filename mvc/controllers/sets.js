@@ -1,15 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const pokemon = require("pokemontcgsdk");
-const {
-  saveCard,
-  removeCard,
-  getCard,
-  updateFollowCard,
-  getCards,
-} = require("../models/cards");
-const scheduleJobs = require("../../lib/scheduleJobs");
-const { randomUUID } = require("node:crypto");
+const { getCard } = require("../models/cards");
 
 const usdFormatter = new Intl.NumberFormat("en-us", {
   style: "currency",
@@ -17,7 +9,7 @@ const usdFormatter = new Intl.NumberFormat("en-us", {
 });
 
 module.exports = (router, app) => {
-  router.route("/new/").get(async (req, res) => {
+  router.route("/sets/").get(async (req, res) => {
     let model = require("../models/global")(req, res);
     model.routePrefix = app.get("routePrefix") || "";
 
@@ -53,25 +45,7 @@ module.exports = (router, app) => {
     res.render("setListing", model);
   });
 
-  router.route("/followedCards").get((req, res) => {
-    const cards = getCards();
-    return res.json(cards);
-  });
-
-  router.route("/import").post((req, res) => {
-    const content = JSON.parse(req.body.content);
-
-    for (let card of content) {
-      card.name = card.cardName;
-      saveCard(card);
-    }
-
-    scheduleJobs();
-
-    res.redirect("/");
-  });
-
-  router.route("/new/:id").get(async (req, res) => {
+  router.route("/sets/:id").get(async (req, res) => {
     const setId = req.params.id;
 
     let model = require("../models/global")(req, res);
@@ -90,6 +64,7 @@ module.exports = (router, app) => {
     const set = await pokemon.set.find(setId);
 
     model.set = {
+      id: setId,
       name: set.name,
       image: set.images.logo,
       releaseDate: set.releaseDate,
@@ -101,26 +76,8 @@ module.exports = (router, app) => {
     res.render("setList", model);
   });
 
-  router.route("/followedCard/:id").get((req, res) => {
-    const cardId = req.params.id;
-
-    const card = getCard(cardId);
-
-    return res.json(card);
-  });
-
-  router.route("/updateFollowCard").post((req, res) => {
-    const { id, requestedPrice, refreshCron } = req.body;
-
-    updateFollowCard(id, requestedPrice, refreshCron);
-
-    scheduleJobs();
-
-    return res.redirect("/");
-  });
-
-  router.route("/card/:id").get(async (req, res) => {
-    const cardId = req.params.id;
+  router.route("/sets/:setId/card/:cardId").get(async (req, res) => {
+    const cardId = req.params.cardId;
 
     const card = await pokemon.card.find(cardId);
 
@@ -128,7 +85,6 @@ module.exports = (router, app) => {
     model.routePrefix = app.get("routePrefix") || "";
 
     model.cardDetails = JSON.stringify(card, null, 2);
-    // console.log(card);
 
     model.cardPrices = JSON.stringify(card.tcgplayer, null, 2);
     model.cardName = card.name;
@@ -163,25 +119,5 @@ module.exports = (router, app) => {
 
     model.content.pageTitle = `Card: ${card.name} (${cardId})`;
     res.render("card", model);
-  });
-
-  router.route("/saveCard").post((req, res) => {
-    const card = req.body;
-
-    card.uuid = randomUUID();
-
-    saveCard(card);
-
-    scheduleJobs();
-
-    res.redirect(`/`);
-  });
-
-  router.route("/removeCard/:id").get((req, res) => {
-    removeCard(req.params.id);
-
-    scheduleJobs();
-
-    res.redirect("/");
   });
 };

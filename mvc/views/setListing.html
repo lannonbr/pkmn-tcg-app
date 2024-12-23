@@ -11,7 +11,7 @@
             <img src="{set.img}" alt="Logo for {set.name}" class="mb-6 w-48" />
             <p>
               <span>{set.name} -</span>
-              <a href="{routePrefix}/new/{set.value}">{set.value}</a>
+              <a href="{routePrefix}/sets/{set.value}">{set.value}</a>
             </p>
           </li>
         </loop>
@@ -26,7 +26,7 @@
                 {set.name} - {set.description} -
                 <a
                   class="text-blue-700 hover:underline"
-                  href="{routePrefix}/new/{set.value}"
+                  href="{routePrefix}/sets/{set.value}"
                   >{set.value}</a
                 >
               </li>
