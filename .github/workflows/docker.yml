@@ -33,7 +33,7 @@ jobs:
           push: true
           tags: ghcr.io/lannonbr/pkmn-tcg-app:${{ github.ref_name }}
       - name: Prune old images
-        uses: lannonbr/prune-containers-action@1.0.1
+        uses: lannonbr/prune-containers-action@4ec3200295eae3441082fa83c2eb5aa3cacedb06 # 1.0.1
         with:
           container-name: pkmn-tcg-app
         env:
