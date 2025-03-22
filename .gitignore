@@ -112,6 +112,9 @@ public
 # secrets directory
 secrets
 
+# build directory
+.build
+
 # session data
 sessions.sqlite
 

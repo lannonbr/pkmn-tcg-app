@@ -10,17 +10,18 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "better-sqlite3": "^11.5.0",
-    "cron": "^3.2.1",
-    "dotenv": "^16.4.5",
+    "better-sqlite3": "^11.9.1",
+    "cron": "^4.1.0",
+    "dotenv": "^16.4.7",
     "luxon": "^3.5.0",
     "pokemontcgsdk": "^2.0.0",
-    "roosevelt": "~0.23.2",
-    "tailwindcss": "^3.4.15",
-    "teddy": "~0.6.19"
+    "roosevelt": "~0.29.3",
+    "tailwindcss": "^3.4.17",
+    "teddy": "~1.0.1",
+    "webpack": "^5.98.0"
   },
   "devDependencies": {
-    "nodemon": "~3.1.7"
+    "nodemon": "~3.1.9"
   },
   "nodemonConfig": {
     "ignore": [
@@ -35,16 +36,8 @@
     "url": "https://github.com/lannonbr/pkmn-tcg-app.git"
   },
   "scripts": {
-    "audit-config": "node ./node_modules/roosevelt/lib/scripts/configAuditor.js",
-    "d": "nodemon app.js --development-mode",
     "dev": "nodemon app.js --development-mode",
-    "development": "nodemon app.js --development-mode",
-    "p": "nodemon app.js --production-mode",
     "prod": "nodemon app.js --production-mode",
-    "production": "nodemon app.js --production-mode",
-    "x": "nodemon app.js --production-proxy-mode",
-    "prodproxy": "nodemon app.js --production-proxy-mode",
-    "production-proxy": "nodemon app.js --production-proxy-mode",
     "start": "nodemon app.js --production-mode"
   }
 }

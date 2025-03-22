@@ -1,13 +1,16 @@
 {
-  "port": 11428,
+  "http": {
+    "port": 11428
+  },
   "makeBuildArtifacts": true,
   "https": {
     "enable": false
   },
-  "secretsDir": "secrets",
+  "secretsPath": "secrets",
   "modelsPath": "mvc/models",
   "viewsPath": "mvc/views",
   "viewEngine": ["html:teddy"],
+  "preprocessedViewsPath": false,
   "controllersPath": "mvc/controllers",
   "csrfProtection": false,
   "css": {
