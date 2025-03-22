@@ -1,0 +1,22 @@
+<include src="layouts/main">
+  <arg pageContent>
+    <article id="homepage">
+      <a class="green-btn" href="{routePrefix}/sets-jp/"
+        >&laquo; Back to Set Listing</a
+      >
+
+      <h2>Cards:</h2>
+
+      <ul class="setList grid gap-4">
+        <loop through="setList" val="card">
+          <li>
+            <span>{card.name} -</span>
+            <a href="{routePrefix}/sets-jp/{setId}/card/{card.productId}"
+              >{setId}-{card.number}</a
+            >
+          </li>
+        </loop>
+      </ul>
+    </article>
+  </arg>
+</include>

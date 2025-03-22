@@ -45,6 +45,22 @@ module.exports = (router, app) => {
     res.render("setListing", model);
   });
 
+  router.route("/sets-jp/").get(async (req, res) => {
+    let model = require("../models/global")(req, res);
+    model.routePrefix = app.get("routePrefix") || "";
+
+    model.sets = JSON.parse(
+      fs.readFileSync(path.join(__dirname, "..", "..", "data", "sets-jp.json"))
+    ).results.filter((set) => set.abbreviation.length > 0);
+
+    model.sets.forEach((set) => {
+      set.abbreviation = set.abbreviation.toLowerCase();
+    });
+
+    model.content.pageTitle = "JP Set Listing";
+    res.render("jpSetListing", model);
+  });
+
   router.route("/sets/:id").get(async (req, res) => {
     const setId = req.params.id;
 
@@ -74,6 +90,85 @@ module.exports = (router, app) => {
 
     model.content.pageTitle = `Set Listing: ${set.name}`;
     res.render("setList", model);
+  });
+
+  router.route("/sets-jp/:id").get(async (req, res) => {
+    let model = require("../models/global")(req, res);
+    model.routePrefix = app.get("routePrefix") || "";
+
+    let setId = req.params.id;
+
+    model.setId = setId;
+
+    model.setList = JSON.parse(
+      fs.readFileSync(
+        path.join(
+          __dirname,
+          "..",
+          "..",
+          "data",
+          "sets",
+          "jp",
+          `${setId}-products.json`
+        )
+      )
+    );
+
+    model.setList = model.setList
+      .filter((item) => {
+        return (
+          item.extendedData.findIndex((data) => data.name == "Number") >= 0
+        );
+      })
+      .map((card) => {
+        return {
+          productId: card.productId,
+          name: card.name.split(" -")[0],
+          number: parseInt(
+            card.extendedData
+              .find((data) => data.name == "Number")
+              .value.split("/")[0]
+          ),
+        };
+      });
+
+    model.content.pageTitle = `Set Listing: ${setId}`;
+    res.render("jpSetList", model);
+  });
+
+  router.route("/sets-jp/:setId/card/:cardId").get(async (req, res) => {
+    const cardId = req.params.cardId;
+    const setId = req.params.setId;
+
+    let model = require("../models/global")(req, res);
+    model.routePrefix = app.get("routePrefix") || "";
+
+    let setList = JSON.parse(
+      fs.readFileSync(
+        path.join(
+          __dirname,
+          "..",
+          "..",
+          "data",
+          "sets",
+          "jp",
+          `${setId}-products.json`
+        )
+      )
+    );
+
+    let card = setList.find((product) => product.productId == cardId);
+
+    model.set = setId;
+    model.card = card;
+
+    model.cardDetails = JSON.stringify(card, null, 2);
+
+    model.cardPic = card.imageUrl.replace("200w", "400w");
+    model.tcgPlayerUrl = card.url;
+
+    model.content.pageTitle = `Card: ${card.name} (${cardId})`;
+    res.render("jpCard", model);
   });
 
   router.route("/sets/:setId/card/:cardId").get(async (req, res) => {

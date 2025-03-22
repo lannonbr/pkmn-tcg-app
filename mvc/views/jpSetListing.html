@@ -1,0 +1,19 @@
+<include src="layouts/main">
+  <arg pageContent>
+    <article id="homepage">
+      <h2>All JP Pokemon Products</h2>
+      <ul class="ml-8 gap-y-2 grid grid-cols-2">
+        <loop through="sets" val="set">
+          <li>
+            {set.name} -
+            <a
+              class="text-blue-700 hover:underline"
+              href="{routePrefix}/sets-jp/{set.abbreviation}"
+              >{set.abbreviation}</a
+            >
+          </li>
+        </loop>
+      </ul>
+    </article>
+  </arg>
+</include>
