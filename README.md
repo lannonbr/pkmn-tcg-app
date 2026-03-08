@@ -1,3 +1,9 @@
+# New repo
+
+I've made a v2 of this application using [TCGCSV](https://tcgcsv.com) as a backend here: https://github.com/lannonbr/tcg-tracker/
+
+The new app now provides tracking data for all products on TCGPlayer, not just english Pokemon cards
+
 # pkmn-tcg-app
 
 A node app to track prices for Pokemon TCG cards based on prices from TCGPlayer. The main functionality will be sending Discord alerts when a card's market price drops below a price I would be comfortable buying it at.
